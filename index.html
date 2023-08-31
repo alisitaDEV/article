@@ -1,0 +1,62 @@
+ <!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	
+	<title>Artikel Full JS</title>
+  
+  <link rel="stylesheet" href="https://almuhsinin.my.id/public/js/jquery-3.5.1.min.js">
+
+  <style>
+  	a{text-decoration: none;}
+  	img{max-width: 100%;}
+  </style>
+</head>
+<body>
+	<div class="container">
+		<div class="row">
+			<div class="col-12">
+				<div id="show"></div>
+			</div>
+		</div>
+	</div>
+
+  <script src="https://almuhsinin.my.id/public/js/jquery-3.5.1.min.js"></script>
+
+	<script>
+		function getUrlVars(param=null)
+		{
+			if(param !== null)
+			{
+				var vars = [], hash;
+				var hashes = window.location.href.slice(window.location.href.indexOf('?') + 1).split('&');
+				for(var i = 0; i < hashes.length; i++)
+				{
+					hash = hashes[i].split('=');
+					vars.push(hash[0]);
+					vars[hash[0]] = hash[1];
+				}
+				return vars[param];
+			} 
+			else 
+			{
+				return null;
+			}
+		}
+
+		var idArticle = getUrlVars("open");
+
+		$.ajax({
+			url : 'https://conn.alisita.my.id/article/babulihsan/open/',
+			method : 'post',
+			data : {
+				'idArticle' : idArticle
+			},
+			success : function(load){
+        $('#show').html(load);
+      }
+		});
+	</script>
+</body>
+</html>
